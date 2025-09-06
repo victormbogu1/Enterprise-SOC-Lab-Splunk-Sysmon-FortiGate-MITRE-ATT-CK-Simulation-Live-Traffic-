@@ -162,10 +162,62 @@ Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
 
+# Configure the syslog server Configure the syslog server Ensure syslog forwarding is enabled
+config log syslogd setting
+set status enable
+set server 192.168.100.60
+set mode udp
+set port 514
+set facility local7
+set source-ip 192.168.100.1
+end
+
+Enable logging for different events
+
+For example, enable logging for traffic, security, and VPN events:
+
+config log setting
+set fwpolicy-implicit-log enable
+set local-in-allow enable
+end
+
+After this, syslog logging is configured, and logs will be sent to Splunk (assuming UDP 514 is reachable).
+
 # Next was to set up Splunk to ingest FortiGate logs via UDP 514. You’ll need to create or edit an inputs.conf in the Fortinet Add-On and after that restart splunk:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/335ad021691b935952bb8ee38538d7430d619cb6/New%20folder%20(3)/inputsconf%20for%20fortigate.png)
 
+Verify if firewall policy is been configured or applied
+Testpc-firewall → policy ID 2
+LAN-to-WAN → policy ID 1
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/56e7298a5a59c4df0ef22288e6d6bf3b9b541cb5/New%20folder%20(3)/show%20is%20enable.png)
+
+## Enable traffic logging for the policy so web filter events are generated and forwarded to Splunk.
+
+config firewall policy
+edit 2
+set logtraffic all
+next
+edit 1
+set logtraffic all
+next
+end
+
+Notes:
+set logtraffic all logs all traffic matched by this policy, including web filter blocks.
+
+Generate a test log to verify fortigate logs is sent to splunk 
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/56e7298a5a59c4df0ef22288e6d6bf3b9b541cb5/New%20folder%20(3)/firewall%20sending%20log.png)
+
+
+
+
+# FortiGate config
+
+
+
+# $SPLUNK_HOME/etc/system/local/inputs.conf (or set via UI):
 
 Query A — Brute-force success after failures (detection)
 
@@ -177,8 +229,4 @@ Query D — Sysmon network connection to RDP/SMB
 
 Splunk input (on indexer)
 
-# FortiGate config
 
-
-
-# $SPLUNK_HOME/etc/system/local/inputs.conf (or set via UI):
