@@ -67,19 +67,24 @@ Enhanced session mode (host) allows clipboard / file transfer for Windows guests
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a4141b4945197f8e4e51039e6be43f6fbe823243/New%20folder%20(2)/Screenshot%202025-08-26%20123118.png)
 
+
+## Testing VM Machines, if they all reachable:
+The Kali , Target, Domain and Splunk server all able to communicate together.
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20pinging.png)
+
 ## Splunk Enterprise on Ubuntu (Detailed)
 What & Why
 
 Splunk acts as the central collector & analytics engine. We install Splunk Enterprise and open listening for forwarders (port 9997 default).
 
-Install steps (concise)
 
 Upload .deb to your Ubuntu Splunk VM (or wget from Splunk site).
 
 Install:
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Installing%20Splung.png)
 
-## Testing VM Machines, if they all reachable:
-The Kali , Target, Domain and Splunk server all able to communicate together.
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20listening%20port.png)
 
 
 # Splunk Universal Forwarder on Windows — (Full explanation)
@@ -88,16 +93,32 @@ The Kali , Target, Domain and Splunk server all able to communicate together.
 - UF is a light-weight Splunk agent that forwards Windows Event Logs and local files to the Splunk indexer.
 - Provide receiving indexer IP: 192.168.10.60:9997.
 
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Splunk%20forward%20events.png)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Config%20File.png)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20splunk%20is%20running.png)
+
 ## Key config files (where to put them & what they do)
-Configure the forwaders on both the Target, DC and Standalone PC.
+Configure the forwaders on both the Target and DC.
 
 - outputs.conf (Where does the UF send data)
-
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/output.png)
 - inputs.conf (What logs to forward)
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/inputforward.png)
 
-- Attack simulation with Kali (hydra) — do this only in your lab
+
+- Attack simulation with Kali (hydra) — do this only in your lab.
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Hydra%20to%20attack.png)
 
 Why: Generate failed & successful logons to see which events are generated and how Splunk detects them.
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Attacker%20failed%204625.png)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Successful%20logon%20by%20the%20attacker.png)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/show%20persistent%20log.png)
 
 Query A — Brute-force success after failures (detection)
 
@@ -110,5 +131,7 @@ Query D — Sysmon network connection to RDP/SMB
 Splunk input (on indexer)
 
 # FortiGate config
+
+
 
 # $SPLUNK_HOME/etc/system/local/inputs.conf (or set via UI):
