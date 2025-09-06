@@ -55,6 +55,23 @@ The result: a hands-on lab showing how to detect and investigate brute-force att
 | `Stand_alone_PC` | Windowa 10          | Test_Connectivity                       | Windows Security logs, Sysmon logs            | 2 vCPU / 4 GB RAM / 60 GB disk|
 
 
+## Testing VM Machines, if they all reachable:
+The Kali , Target, Domain and Splunk server all able to communicate together.
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20pinging.png)
+
+# Configure and confirm if splung is working
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/Corming%20Symon%20installation.png)
+
+# Configure my Kali Machine that will serve as attcking machine
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/Kali%20Machine.png)
+
+Configure my Ubutun that server as Splunk server
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/SplunkIP.png)
+
+
 # Hyper-V & networking notes
 
 I used a single NAT/bridged vSwitch (LabNAT) so VMs can talk to each other and the internet. If you want isolation, use multiple vSwitches with routing rules.
@@ -68,11 +85,6 @@ Enhanced session mode (host) allows clipboard / file transfer for Windows guests
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a4141b4945197f8e4e51039e6be43f6fbe823243/New%20folder%20(2)/Screenshot%202025-08-26%20123118.png)
 
 
-## Testing VM Machines, if they all reachable:
-The Kali , Target, Domain and Splunk server all able to communicate together.
-
-![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20pinging.png)
-
 ## Splunk Enterprise on Ubuntu (Detailed)
 What & Why
 
@@ -83,6 +95,18 @@ Upload .deb to your Ubuntu Splunk VM (or wget from Splunk site).
 
 Install:
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Installing%20Splung.png)
+
+# Disk issues & expansion (Linux LVM)
+I ran into error because of disk space and i'd to fix it.
+
+### Check current VG/LV
+sudo lvdisplay
+### Extend logical volume using free space
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+### Resize filesystem (ext4 example)
+sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
+df -h
+
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20listening%20port.png)
 
@@ -101,6 +125,10 @@ Install:
 
 ## Corming client is receiving data
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/39db47e2a10198db6f5f4e40744147f6a090cf03/New%20folder%20(3)/ConfirmingClient.png)
+
+# Check if i can see my two host machine (DC & Target Machine)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/Two_Host.png)
 
 ## Key config files (where to put them & what they do)
 Configure the forwaders on both the Target and DC.
