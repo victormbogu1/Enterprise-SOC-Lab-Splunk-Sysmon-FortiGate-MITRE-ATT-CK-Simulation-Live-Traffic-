@@ -65,3 +65,16 @@ Dynamic disks: When creating VMs, choose dynamically expanding VHDX to save host
 
 Enhanced session mode (host) allows clipboard / file transfer for Windows guests.
 
+
+
+
+Splunk Enterprise on Ubuntu (Detailed)
+What & Why
+
+Splunk acts as the central collector & analytics engine. We install Splunk Enterprise and open listening for forwarders (port 9997 default).
+
+Install steps (concise)
+
+Upload .deb to your Ubuntu Splunk VM (or wget from Splunk site).
+
+Install:
