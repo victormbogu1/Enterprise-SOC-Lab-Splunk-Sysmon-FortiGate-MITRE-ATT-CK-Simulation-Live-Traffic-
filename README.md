@@ -90,8 +90,25 @@ The Kali , Target, Domain and Splunk server all able to communicate together.
 
 ## Key config files (where to put them & what they do)
 Configure the forwaders on both the Target, DC and Standalone PC.
-Path: C:\Program Files\SplunkUniversalForwarder\etc\system\local\
 
-outputs.conf (Where does the UF send data)
+- outputs.conf (Where does the UF send data)
 
-inputs.conf (What logs to forward)
+- inputs.conf (What logs to forward)
+
+- Attack simulation with Kali (hydra) — do this only in your lab
+
+Why: Generate failed & successful logons to see which events are generated and how Splunk detects them.
+
+Query A — Brute-force success after failures (detection)
+
+Query B — All failed attempts (useful to see ongoing attacks even when no success)
+
+Query C — Sysmon suspicious process (process creation, cmd/powershell)
+
+Query D — Sysmon network connection to RDP/SMB
+
+Splunk input (on indexer)
+
+# FortiGate config
+
+# $SPLUNK_HOME/etc/system/local/inputs.conf (or set via UI):
