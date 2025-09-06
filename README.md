@@ -151,6 +151,18 @@ Why: Generate failed & successful logons to see which events are generated and h
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/show%20persistent%20log.png)
 
+
+## Install via CLI - Fortinet FortiGate Add-on for Splunk and Extract it:
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Extract%20fortigate.png)
+
+Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy extracted Fortinet Add-On folder into this directory - sudo cp -r ~/Downloads/TA-fortinet_fortigate /opt/splunk/etc/apps/
+
+## Restart Splunk:
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
+
+
 Query A — Brute-force success after failures (detection)
 
 Query B — All failed attempts (useful to see ongoing attacks even when no success)
