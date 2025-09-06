@@ -1,9 +1,10 @@
-# Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate
+# SOC Homelab — AD, Splunk, Sysmon, Kali & FortiGate (Full Implementation)
 ## Project Overview
 
+Build a compact, reproducible Security Operations lab for detection of Windows authentication attacks (brute force/password-spray) and endpoint activity using Splunk.
 This project demonstrates a real-world SIEM implementation using Splunk Enterprise, Windows Event Logs, Sysmon, and FortiGate firewall logs.
+What you’ll learn: Active Directory basics, Splunk ingestion and searches, Sysmon configuration, forwarding logs from Windows to Splunk, network log ingestion (FortiGate), attack simulation with Kali, building dashboards & alerts, troubleshooting.
 
-We simulate an attacker (Kali Linux) brute-forcing a Windows domain, capture logs from the Domain Controller, Target endpoint, and Firewall, then forward them to Splunk for correlation, visualization, and alerts.
 
 The result: a hands-on lab showing how to detect and investigate brute-force attacks end-to-end.
 
@@ -24,8 +25,43 @@ The result: a hands-on lab showing how to detect and investigate brute-force att
 
 - Attacker → Target (brute-force traffic)
 
-- Target + DC → Splunk (Windows Event Logs + Sysmon)
+- Target + DC + Standalone_PC→ Splunk (Windows Event Logs + Sysmon)
 
 - Firewall → Splunk (syslog logs)
 
 - Splunk → Security Analyst (dashboards + alerts)
+
+## Objective & high-level design — (What & Why)
+
+- What: I built a small lab: Windows Server 2022 as Active Directory Domain Controller (ADDC), a Windows 10 target workstation joined to the domain, Kali Linux as an attacker, Splunk Enterprise on Ubuntu as the SIEM and Windows Universal Forwarder (UF) + Sysmon on Windows to provide telemetry. FortiGate sends network logs to Splunk for correlation.
+
+- Why: This replicates a small enterprise environment to:
+
+- Generate attacker telemetry (failed logins, successes, suspicious process execution).
+
+- Capture high-resolution endpoint events (Sysmon) and security events (Windows Security logs).
+
+- Visualize and alert in Splunk, practice triage and response.
+
+- Learn correlation of endpoint + network logs (Splunk + FortiGate).
+
+| VM name     |                       OS | Role                                    | Primary logs                                  |     vCPU / RAM / Disk (recommended) |
+| ----------- | -----------------------: | --------------------------------------- | --------------------------------------------- | ----------------------------------: |
+| `SPLUNK`    |  Ubuntu Server 22.04 LTS | Splunk Enterprise (Indexer/Search Head) | All indexed logs (windows, sysmon, fortigate) | 4 vCPU / 8 GB RAM / 80+ GB disk |
+| `ADDC01`    |      Windows Server 2022 | Active Directory Domain Controller      | Windows Security logs, AD events              | 2 vCPU / 8 GB RAM / 70 GB disk |
+| `TARGET-PC` |            Windows 10/11 | Domain-joined workstation               | Windows Security logs, Sysmon logs            | 2 vCPU / 4 GB RAM / 60 GB disk |
+| `KALI`      |               Kali Linux | Attacker (Hydra, other tools)           | n/a (attacker side)                           | 2 vCPU / 2 GB RAM / 20 GB disk |
+| `FortiGate` | FortiGate VM             | Edge firewall                           | Syslog for traffic                            | hardware-varying |
+| `Stand_alone_PC` | Windowa 10          | Test_Connectivity                       | Windows Security logs, Sysmon logs            | 2 vCPU / 4 GB RAM / 60 GB disk|
+
+
+# Hyper-V & networking notes
+
+I used a single NAT/bridged vSwitch (LabNAT) so VMs can talk to each other and the internet. If you want isolation, use multiple vSwitches with routing rules.
+
+Snapshots / Checkpoints: Always create a checkpoint before major changes. Before expanding a VHDX you must delete/merge checkpoints or Hyper-V will not allow editing the disk.
+
+Dynamic disks: When creating VMs, choose dynamically expanding VHDX to save host space. You can expand later via Hyper-V Manager → Edit Disk → Expand, then extend LVM inside the Linux VM if needed.
+
+Enhanced session mode (host) allows clipboard / file transfer for Windows guests.
+
