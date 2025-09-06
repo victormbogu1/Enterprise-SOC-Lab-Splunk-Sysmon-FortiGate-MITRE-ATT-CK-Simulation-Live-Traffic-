@@ -180,6 +180,10 @@ set facility local7
 set source-ip 192.168.100.1
 end
 
+Also did the configuration in the fortigate web interface 
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/8100ef16e67c1acd4af128d0b34e078f2c6f26ef/New%20folder%20(4)/configuring%20syslog%20on%20fortigate.png)
+
 Enable logging for different events
 
 For example, enable logging for traffic, security, and VPN events:
@@ -215,6 +219,10 @@ end
 Notes:
 set logtraffic all logs all traffic matched by this policy, including web filter blocks.
 
+You see all logs displayed including the webfiltering 
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/8100ef16e67c1acd4af128d0b34e078f2c6f26ef/New%20folder%20(4)/log%20types%20(traffic%2C%20VPN%2C%20virus%2C%20etc.)..png)
+
 Fortigate showing in splunk
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(3)/firewal.png)
@@ -229,6 +237,11 @@ Generate a test log to verify fortigate logs is sent to splunk
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/56e7298a5a59c4df0ef22288e6d6bf3b9b541cb5/New%20folder%20(3)/firewall%20sending%20log.png)
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Screenshot%202025-09-03%20223140.png)
+
+Showing the webfilering working blocked the web application that are not needed
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/main/New%20folder%20(4)/Screenshot%202025-09-06%20212541.png)
+
 
 
 # FortiGate config
