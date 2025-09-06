@@ -67,7 +67,7 @@ Enhanced session mode (host) allows clipboard / file transfer for Windows guests
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a4141b4945197f8e4e51039e6be43f6fbe823243/New%20folder%20(2)/Screenshot%202025-08-26%20123118.png)
 
-Splunk Enterprise on Ubuntu (Detailed)
+## Splunk Enterprise on Ubuntu (Detailed)
 What & Why
 
 Splunk acts as the central collector & analytics engine. We install Splunk Enterprise and open listening for forwarders (port 9997 default).
@@ -77,3 +77,21 @@ Install steps (concise)
 Upload .deb to your Ubuntu Splunk VM (or wget from Splunk site).
 
 Install:
+
+## Testing VM Machines, if they all reachable:
+The Kali , Target, Domain and Splunk server all able to communicate together.
+
+
+# Splunk Universal Forwarder on Windows — (Full explanation)
+## What & Why
+
+- UF is a light-weight Splunk agent that forwards Windows Event Logs and local files to the Splunk indexer.
+- Provide receiving indexer IP: 192.168.10.60:9997.
+
+## Key config files (where to put them & what they do)
+Configure the forwaders on both the Target, DC and Standalone PC.
+Path: C:\Program Files\SplunkUniversalForwarder\etc\system\local\
+
+outputs.conf (Where does the UF send data)
+
+inputs.conf (What logs to forward)
