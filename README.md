@@ -162,6 +162,10 @@ Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
 
+# Next was to set up Splunk to ingest FortiGate logs via UDP 514. You’ll need to create or edit an inputs.conf in the Fortinet Add-On and after that restart splunk:
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/335ad021691b935952bb8ee38538d7430d619cb6/New%20folder%20(3)/inputsconf%20for%20fortigate.png)
+
 
 Query A — Brute-force success after failures (detection)
 
