@@ -65,8 +65,7 @@ Dynamic disks: When creating VMs, choose dynamically expanding VHDX to save host
 
 Enhanced session mode (host) allows clipboard / file transfer for Windows guests.
 
-[Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a4141b4945197f8e4e51039e6be43f6fbe823243/New%20folder%20(2)/Screenshot%202025-08-26%20123118.png)
-
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a4141b4945197f8e4e51039e6be43f6fbe823243/New%20folder%20(2)/Screenshot%202025-08-26%20123118.png)
 
 Splunk Enterprise on Ubuntu (Detailed)
 What & Why
