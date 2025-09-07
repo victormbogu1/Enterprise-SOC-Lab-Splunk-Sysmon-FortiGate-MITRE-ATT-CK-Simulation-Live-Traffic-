@@ -333,6 +333,7 @@ Showing the webfilering working blocked the web application that are not needed
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/main/New%20folder%20(4)/Screenshot%202025-09-06%20212541.png)
 
-
+Created a table to show the high impact of webfiletering, blocking web application these shows the logs from fortigate where it displace instagram, facebbok, twitter were been blocked, you can see instagram where the highest blocked  all this shown in splunk
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/b618a777451cf1cece36440e3dcae5d2b8d061e5/New%20folder%20(3)/webfirewalchart.png)
 
 
