@@ -110,6 +110,7 @@ sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
 df -h
 
+Confirm splung is listening - 9997
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20listening%20port.png)
 
@@ -124,6 +125,7 @@ df -h
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Config%20File.png)
 
+Checked and Confirm splunk forwarder is running in Target and domain Pc
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20splunk%20is%20running.png)
 
 ## Corming client is receiving data
@@ -138,23 +140,30 @@ Configure the forwaders on both the Target and DC.
 
 - outputs.conf (Where does the UF send data)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/output.png)
+
 - inputs.conf (What logs to forward)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/inputforward.png)
 
 
 - Attack simulation with Kali (hydra) — do this only in your lab.
+- I tested by acttacking the Target machine by brute forcing using the Hydra with serveral login attempt and successfull login which took place you can see it showned in the diagram
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Hydra%20to%20attack.png)
 
+The below show the faied and successful logs in splunk 
 Why: Generate failed & successful logons to see which events are generated and how Splunk detects them.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Count%20by%20Event_Host.png)
 
+You can see the Attacker machine diplay event code 4625 which reconignises as failed attempt with ip 192.168.10.50 trying to login failed and this as showned over time because i tried severally 
+
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Attacker%20failed%204625.png)
+
+The below shows Event code 4624 which indicate the attacker machine loged in successfully on Target machine
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Successful%20logon%20by%20the%20attacker.png)
 
-Created a table which display high brute force attack coming from Kali Attacker Machine with IP 192.168.100.50
+Created a table which display high brute force attack coming from Kali Attacker Machine with IP 192.168.100.50, you can see the amount of brute force attcak that took place.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/show%20persistent%20log.png)
 
@@ -168,7 +177,6 @@ Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy
 ## Restart Splunk:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
-
 
 Installing Atomic Red Team, Performing a Test, and Reviewing Events in Splunk Atomic Red Team is an open-source project that offers a collection of tests to simulate cyberattacks based on the MITRE ATT&CK framework. Before installing Atomic Red Team (ATR) on target_PC, I excluded the C: drive (where ATR will be installed) from Microsoft Defender Anti-Virus scans. Note: This exclusion is not recommended for normal circumstances. To allow PowerShell scripts to run without restrictions for the current user, I used the command: Set-ExecutionPolicy Bypass -Scope CurrentUser Next, I installed ATR using the following commands:
 
