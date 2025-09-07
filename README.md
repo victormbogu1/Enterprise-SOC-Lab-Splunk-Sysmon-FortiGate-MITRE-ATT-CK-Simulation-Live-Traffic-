@@ -176,8 +176,12 @@ Installing Atomic Red Team, Performing a Test, and Reviewing Events in Splunk At
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/AtomicRed%20local%20folder.png)
 
+Set Defender exclusion on C:\AtomicRedTeam.:
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/5ee5fdbebae56a714ad29efd5deaeedc17656481/New%20folder%20(4)/Screenshot%202025-08-29%20093808.png)
+
 I'll be able to simulate attacks (Atomic Red Team), forward logs, and analyze them in Splunk just like a SOC would.
-Allow PowerShell scripts to run Run this in PowerShell as Administrator and also run the the github script which puts the Atomic Red Team repo directly into the Atomic folder we created in the c:drive and set Defender exclusion on C:\AtomicRedTeam.:
+Allow PowerShell scripts to run Run this in PowerShell as Administrator and also run the the github script which puts the Atomic Red Team repo directly into the Atomic folder we created in the c:drive.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Git%20Clone.png)
 
@@ -208,6 +212,8 @@ Atomic red showing different activities taken place
 The diagram Shows user account was deleted theres been an intrusion which occured by the user
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user2.png)
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/5ee5fdbebae56a714ad29efd5deaeedc17656481/New%20folder%20(4)/Screenshot%202025-08-29%20122720.png)
 
 ## Results:
 ### EventCode	Description
