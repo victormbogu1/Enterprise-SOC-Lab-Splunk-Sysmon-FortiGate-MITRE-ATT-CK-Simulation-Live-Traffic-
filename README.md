@@ -96,6 +96,9 @@ Upload .deb to your Ubuntu Splunk VM (or wget from Splunk site).
 Install:
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Installing%20Splung.png)
 
+Now able see splunk web interface on my broswer
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/web%20interface.png)
+
 # Disk issues & expansion (Linux LVM)
 I ran into error because of disk space and i'd to fix it.
 
@@ -170,9 +173,29 @@ Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/AtomicRed%20local%20folder.png)
 
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Git%20Clone.png)
+
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/Atomicred.png)
 
+Created new user called Newlocaluser and a user called Crowr
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/New%20local%20user%20created.png)
+Local user -Newuser was removed 
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/remove%20local%20user.png)
 
+In splunk it shows the Newlocal user that was created in the client machine
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Newlocaluser%20MATT.png)
+
+Shows the second uer created - Cowerr
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Coweruser.png)
+
+Atomic red showing different activities taken place
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/MATT%20logon.png)
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user.png)
+
+The diagram Shows user account was deleted theres been an intrusion which occured by the user
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user2.png)
 
 # FortiGate config
 For me to integrate fortigate logs into splunk i had to configure the splunk network setting, i had to change the host to be on the same network so they can communicate together splunk previously 192.168.10.60 changes to 192.168.100.60
