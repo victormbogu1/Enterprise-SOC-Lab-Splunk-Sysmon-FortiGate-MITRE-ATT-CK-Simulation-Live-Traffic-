@@ -169,11 +169,21 @@ Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
 
+
+Installing Atomic Red Team, Performing a Test, and Reviewing Events in Splunk Atomic Red Team is an open-source project that offers a collection of tests to simulate cyberattacks based on the MITRE ATT&CK framework. Before installing Atomic Red Team (ATR) on target_PC, I excluded the C: drive (where ATR will be installed) from Microsoft Defender Anti-Virus scans. Note: This exclusion is not recommended for normal circumstances. To allow PowerShell scripts to run without restrictions for the current user, I used the command: Set-ExecutionPolicy Bypass -Scope CurrentUser Next, I installed ATR using the following commands:
+
 ## Created Atomic folder in C:drive
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/AtomicRed%20local%20folder.png)
 
+I'll be able to simulate attacks (Atomic Red Team), forward logs, and analyze them in Splunk just like a SOC would.
+Allow PowerShell scripts to run Run this in PowerShell as Administrator and also run the the github script which puts the Atomic Red Team repo directly into the Atomic folder we created in the c:drive and set Defender exclusion on C:\AtomicRedTeam.:
+
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Git%20Clone.png)
+
+Now we can view all the tests available in Atomic Red Team. Each test is named after the corresponding MITRE ATT&CK technique. For example, I ran the T1136.001 test, which corresponds to the "Create Account: Local Account" persistence technique in MITRE ATT&CK.
+Run as Administrator on the Target_PC. Splunk Forwarder should automatically capture these events and send them to the Splunk server.
+The following Windows Security events will be generated:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/Atomicred.png)
 
@@ -199,8 +209,37 @@ The diagram Shows user account was deleted theres been an intrusion which occure
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user2.png)
 
+## Results:
+### EventCode	Description
+
+4720	User account created
+4722	User account enabled
+4724	Password reset attempt
+4726	User account deleted
+4738	User account changed
+4798	Local group membership enumerated
+
 ## Created a attble for it to visualise the attack
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Mittattack.png)
+
+## Quick recap of what you accomplished:
+
+- Created a local user (NewLocalUser) via PowerShell.
+
+- Added the user to the Administrators group.
+
+- Deleted the user after a few seconds.
+
+- Splunk Forwarder on Target_PC collected the events.
+
+- Splunk server indexed them and you confirmed the events appear.
+
+- MITRE ATT&CK mapping is now visible for the simulated attack.
+
+### Observed Outcome: 
+- The user NewLocalUser was created, added to the Administrators group, and deleted as expected.
+- Corresponding events were captured by Splunk and indexed in the endpoint index.
+- Event codes aligned with MITRE ATT&CK T1136.001, demonstrating successful simulation and monitoring of the attack.
 
 # FortiGate config
 For me to integrate fortigate logs into splunk i had to configure the splunk network setting, i had to change the host to be on the same network so they can communicate together splunk previously 192.168.10.60 changes to 192.168.100.60
