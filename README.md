@@ -328,19 +328,3 @@ Showing the webfilering working blocked the web application that are not needed
 
 
 
-
-
-
-# $SPLUNK_HOME/etc/system/local/inputs.conf (or set via UI):
-
-Query A — Brute-force success after failures (detection)
-
-Query B — All failed attempts (useful to see ongoing attacks even when no success)
-
-Query C — Sysmon suspicious process (process creation, cmd/powershell)
-
-Query D — Sysmon network connection to RDP/SMB
-
-Splunk input (on indexer)
-
-
