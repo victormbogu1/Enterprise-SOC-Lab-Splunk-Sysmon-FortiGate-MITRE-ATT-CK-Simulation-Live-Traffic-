@@ -1,8 +1,8 @@
-# SOC Homelab — AD, Splunk, Sysmon, Kali & FortiGate (Full Implementation)
+# SOC Homelab — AD, Splunk, Sysmon, Kali & FortiGate, MITRE ATT&CK framework (Full Implementation)
 ## Project Overview
 
 Build a compact, reproducible Security Operations lab for detection of Windows authentication attacks (brute force/password-spray) and endpoint activity using Splunk.
-This project demonstrates a real-world SIEM implementation using Splunk Enterprise, Windows Event Logs, Sysmon, and FortiGate firewall logs.
+This project demonstrates a real-world SIEM implementation using Splunk Enterprise, Windows Event Logs, Sysmon, and FortiGate firewall logs, Atomic Red Team, and analyzed results in Splunk following the MITRE ATT&CK framework
 What you’ll learn: Active Directory basics, Splunk ingestion and searches, Sysmon configuration, forwarding logs from Windows to Splunk, network log ingestion (FortiGate), attack simulation with Kali, building dashboards & alerts, troubleshooting.
 
 
