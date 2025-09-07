@@ -1,6 +1,6 @@
 # 🛡️ SOC Homelab — Windows AD, Splunk, Sysmon, Kali & FortiGate (End-to-End Implementation with MITRE ATT&CK)
 
-## Project Overview
+## 📌 Project Overview
 
 This project is all about building a hands-on Security Operations Center (SOC) homelab where I simulate real-world attacks, collect logs, and analyze them inside Splunk.
 
