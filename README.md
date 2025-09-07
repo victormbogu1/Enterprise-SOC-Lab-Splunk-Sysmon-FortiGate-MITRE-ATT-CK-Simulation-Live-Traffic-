@@ -54,6 +54,8 @@ The result: a hands-on lab showing how to detect and investigate brute-force att
 | `FortiGate` | FortiGate VM             | Edge firewall                           | Syslog for traffic                            | hardware-varying |
 | `Stand_alone_PC` | Windowa 10          | Test_Connectivity                       | Windows Security logs, Sysmon logs            | 2 vCPU / 4 GB RAM / 60 GB disk|
 
+## Diagram
+
 
 ## Testing VM Machines, if they all reachable:
 The Kali , Target, Domain and Splunk server all able to communicate together.
@@ -212,26 +214,28 @@ In splunk it shows the Newlocal user that was created in the client machine
 Shows the second uer created - Cowerr
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Coweruser.png)
 
-Atomic red showing different activities taken place
+Atomic red showing different event codes taken place
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/MATT%20logon.png)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user.png)
 
-The diagram Shows user account was deleted theres been an intrusion which occured by the user
+## Results:
+### EventCode	Description
+
+- 4720	User account created
+- 4722	User account enabled
+- 4724	Password reset attempt
+- 4726	User account deleted
+- 4738	User account changed
+- 4798	Local group membership enumerated
+
+
+## The diagram Shows Cowerr user account was deleted theres been an intrusion which occured by the user
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user2.png)
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/5ee5fdbebae56a714ad29efd5deaeedc17656481/New%20folder%20(4)/Screenshot%202025-08-29%20122720.png)
 
-## Results:
-### EventCode	Description
-
-4720	User account created
-4722	User account enabled
-4724	Password reset attempt
-4726	User account deleted
-4738	User account changed
-4798	Local group membership enumerated
 
 ## Created a attble for it to visualise the attack
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Mittattack.png)
@@ -337,3 +341,9 @@ Created a table to show the high impact of webfiletering, blocking web applicati
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/b618a777451cf1cece36440e3dcae5d2b8d061e5/New%20folder%20(3)/webfirewalchart.png)
 
 
+## Conclusion
+This lab has been a fantastic learning experience for me. I've set up Splunk Enterprise on Ubuntu, deployed Splunk forwarders, Ingest fortigate logs into splunk, performed tests with Atomic Red Team, and analyzed results in Splunk following the MITRE ATT&CK framework. I also used Kali Linux to simulate a brute force attack and reviewed the outcome in Splunk.
+
+Through setting all this up, I've sharpened my skills in virtualization with Hyper-V which runs as an enterprise environment, Understand more about how splunk operates and runs including various logs that can be ingested, general Windows and Linux processes and command use  for daily analysing an attack. Although off course i'won't forget the setting up of window server, active directory in as much i have knowledge about it but it helps to me more proactive in it.
+
+I'm excited to keep building on this lab. My next steps include creating Splunk alerts, ingetsing logs from deferent classification such as FTP logs, Dns logs, e.t.c and just generally around in the domain environment. There's always more to learn, no matter if you are a professional, IT is broad glad i took my time to accoplish this and I'm looking forward to more.
