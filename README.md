@@ -100,15 +100,15 @@ Install:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/web%20interface.png)
 
-# Disk issues & expansion (Linux LVM)
+## Disk issues & expansion (Linux LVM)
 - I ran into error because of disk space and i'd to fix it.
 ### Check current VG/LV
-sudo lvdisplay
+- sudo lvdisplay
 ### Extend logical volume using free space
-sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+- sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 ### Resize filesystem (ext4 example)
-sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
-df -h
+- sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
+- df -h
 **(Screenshot Missing)**
 
 ## 📥 Splunk Universal Forwarder (Windows + Sysmon)
@@ -129,7 +129,7 @@ The **Universal Forwarder** is a lightweight Splunk agent. It:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/39db47e2a10198db6f5f4e40744147f6a090cf03/New%20folder%20(3)/ConfirmingClient.png)
 
-# Verify that both host machines (Domain Controller and Target Machine) are visible and reachable from the Splunk server.
+## Verify that both host machines (Domain Controller and Target Machine) are visible and reachable from the Splunk server.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/Two_Host.png)
 
@@ -174,7 +174,7 @@ Hydra is a fast password-cracking tool. In this lab:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/show%20persistent%20log.png)
 
-## 🧪 Atomic Red Team (MITRE ATT&CK Simulation)
+# 🧪 Atomic Red Team (MITRE ATT&CK Simulation)
 
 ### 📌 Why Atomic Red Team?
 Atomic Red Team (ART) is an **open-source project** that provides lightweight tests mapped directly to the **MITRE ATT&CK framework**.  
@@ -226,14 +226,14 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Coweruser.png)
 
-# During the Atomic Red Team simulations, various Windows Security event codes were generated, reflecting different activities such as account creation, logon attempts, and other actions. These events are captured and indexed by Splunk for analysis.
+## During the Atomic Red Team simulations, various Windows Security event codes were generated, reflecting different activities such as account creation, logon attempts, and other actions. These events are captured and indexed by Splunk for analysis.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/MATT%20logon.png)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user.png)
 
 ## Results:
 ### EventCode	Description
-###🔹 Logs Captured in Splunk
+### 🔹 Logs Captured in Splunk
 
 - Event ID 4720 – User account created
 - Event ID 4722 – User account enabled
@@ -263,13 +263,13 @@ This was a crucial part of the lab because:
 - Event codes aligned with MITRE ATT&CK T1136.001, demonstrating successful simulation and monitoring of the attack.
 
 # FortiGate config
-##🔹 Setup Steps
+## 🔹 Setup Steps
 
 ## Change Splunk Server IP, Originally Splunk was on 192.168.10.60. To match FortiGate’s network, I changed it to 192.168.100.60.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Fortigate%20pinging%20splunk.png)
 
-# Install Fortinet Add-On for Splunk
+## Install Fortinet Add-On for Splunk
 
 - Download TA-fortinet_fortigate.
 - Extract to /opt/splunk/etc/apps/.
@@ -279,7 +279,7 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Extract%20fortigate.png)
 
-Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy extracted Fortinet Add-On folder into this directory - sudo cp -r ~/Downloads/TA-fortinet_fortigate /opt/splunk/etc/apps/
+- Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy extracted Fortinet Add-On folder into this directory - sudo cp -r ~/Downloads/TA-fortinet_fortigate /opt/splunk/etc/apps/
 
 ## Restart Splunk:
 
@@ -329,7 +329,7 @@ end
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Screenshot%202025-09-03%20203209.png)
 
-# Next, I configured Splunk to ingest FortiGate logs via UDP port 514. This involved creating or editing the inputs.conf file within the Fortinet Add-On, followed by restarting Splunk to apply the changes:
+## Next, I configured Splunk to ingest FortiGate logs via UDP port 514. This involved creating or editing the inputs.conf file within the Fortinet Add-On, followed by restarting Splunk to apply the changes:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/335ad021691b935952bb8ee38538d7430d619cb6/New%20folder%20(3)/inputsconf%20for%20fortigate.png)
 
@@ -366,8 +366,8 @@ end
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/b618a777451cf1cece36440e3dcae5d2b8d061e5/New%20folder%20(3)/webfirewalchart.png)
 
-#🟣 Results & Conclusion
-##🔹 What I Accomplished
+# 🟣 Results & Conclusion
+## 🔹 What I Accomplished
 
 - Built a full SOC lab:
 - AD DC + Target Workstation + Kali Attacker + FortiGate Firewall + Splunk Server.
@@ -378,7 +378,7 @@ end
 - Integrated FortiGate firewall logs for network visibility.
 - Created Splunk dashboards + alerts for security monitoring.
 
-##🎯 Key Learnings
+## 🎯 Key Learnings
 
 - SIEM setup (Splunk Enterprise + UF).
 - Correlating endpoint + firewall logs.
@@ -386,7 +386,7 @@ end
 - Hands-on attacker simulation with Hydra.
 - Hyper-V VM management + troubleshooting (disk expansion, networking).
 
-##🚀 Next Steps
+## 🚀 Next Steps
 
 - Add DNS, FTP, Proxy logs.
 - Expand detections to persistence & lateral movement.
