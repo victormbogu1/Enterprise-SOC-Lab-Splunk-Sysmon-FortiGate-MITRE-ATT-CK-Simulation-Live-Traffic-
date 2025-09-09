@@ -262,10 +262,20 @@ This was a crucial part of the lab because:
 - Corresponding events were captured by Splunk and indexed in the endpoint index.
 - Event codes aligned with MITRE ATT&CK T1136.001, demonstrating successful simulation and monitoring of the attack.
 
+# 🔥 FortiGate Firewall Integration
+## 📌 Why FortiGate?
+
+- Endpoint logs alone aren’t enough. Attackers often traverse the network.
+- By integrating FortiGate Firewall logs, we gain visibility into:
+- Traffic flows (LAN ↔ WAN).
+- VPN usage.
+- Web filtering (blocked/allowed applications).
+- Security events (malware, IPS).
+- This allows correlation: failed logons on endpoints + suspicious traffic = higher fidelity alerts.
+
 # FortiGate config
 ## 🔹 Setup Steps
-
-## Change Splunk Server IP, Originally Splunk was on 192.168.10.60. To match FortiGate’s network, I changed it to 192.168.100.60.
+### Change Splunk Server IP, Originally Splunk was on 192.168.10.60. To match FortiGate’s network, I changed it to 192.168.100.60.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Fortigate%20pinging%20splunk.png)
 
