@@ -297,13 +297,21 @@ This was a crucial part of the lab because:
 
 ## Following the installation of the FortiGate add-on, I set up the syslog server, configured it for log collection, and verified that syslog forwarding from FortiGate to the server was enabled to ensure proper logging and monitoring.
 *config log syslogd setting*
+
 *set status enable*
+
 *set server 192.168.100.60*
+
 *set mode udp*
+
 *set port 514*
+
 *set facility local7*
+
 *set source-ip 192.168.100.160*
+
 *end*
+
 **(Screenshot Missing)**
 
 ## In addition to CLI-based setup, the configuration was carried out via the FortiGate web interface, ensuring that both management methods reflect the applied settings
@@ -317,19 +325,29 @@ This was a crucial part of the lab because:
 ## Enable logging for different events For example, enable logging for traffic, security, and VPN events:
 
 *config log setting*
+
 *set fwpolicy-implicit-log enable*
+
 *set local-in-allow enable*
+
 *end*
 
 ## Enable traffic logging for the policy so web filter events are generated and forwarded to Splunk.
 
 *config firewall policy*
+
 *edit 2*
+
 *set logtraffic all*
+
 *next*
+
 *edit 1*
+
 *set logtraffic all*
+
 *next*
+
 *end*
 
 ## Notes:
