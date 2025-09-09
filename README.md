@@ -38,6 +38,11 @@ The **goal** was to:
 - FortiGate → Splunk (network logs via syslog)  
 - Splunk → Security Analyst (dashboards, alerts, investigation) 
 
+## Architecture Diagram
+
+![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/ac488889c1e5c76499e3514fd774842bac77933e/New%20folder%20(4)/Flow_2025_02.gif)
+
+
 ## ⚙️ Virtual Machine Setup
 
 | VM name     |                       OS | Role                                    | Primary logs                                  |     vCPU / RAM / Disk (recommended) |
@@ -49,7 +54,6 @@ The **goal** was to:
 | `FortiGate` | FortiGate VM             | Firewall                                | Syslog for traffic                            | hardware-varying |
 | `Stand_alone_PC` | Windowa 10          | Test_Connectivity                       | Windows Security logs, Sysmon logs            | 2 vCPU / 4 GB RAM / 60 GB disk|
 
-## Diagram
 
 ## 🌐 Hyper-V Networking Notes
 - Used a **NAT/bridged vSwitch (LabNAT)** for VM-to-VM + internet connectivity.  
