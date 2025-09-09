@@ -138,7 +138,7 @@ The **Universal Forwarder** is a lightweight Splunk agent. It:
 - **inputs.conf** → selects which logs to forward (Security, Sysmon, Application).  
 - Installed on **Target-PC** and **Domain Controller**.
   
-#### Configure the forwaders on both the Target and DC.
+### Configure the forwaders on both the Target and DC.
 
 - outputs.conf (Where does the UF send data)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/output.png)
@@ -222,7 +222,7 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Newlocaluser%20MATT.png)
 
-## The Splunk server successfully received and indexed the event indicating that the Crowr account was created on the client machine, demonstrating that the Splunk Forwarder is accurately capturing multiple account creation activities.
+### The Splunk server successfully received and indexed the event indicating that the Crowr account was created on the client machine, demonstrating that the Splunk Forwarder is accurately capturing multiple account creation activities.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Coweruser.png)
 
