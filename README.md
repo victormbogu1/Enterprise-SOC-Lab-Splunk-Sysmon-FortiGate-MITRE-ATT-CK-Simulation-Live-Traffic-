@@ -245,14 +245,14 @@ This was a crucial part of the lab because:
 ### The Splunk Forwarder sent the captured events to the Splunk Indexer, where I confirmed that they were successfully indexed as shown above.
 
 
-## The diagram shows that the Crowr user account was deleted, indicating that an intrusion occurred involving this account
+### The diagram shows that the Crowr user account was deleted, indicating that an intrusion occurred involving this account
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user2.png)
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/5ee5fdbebae56a714ad29efd5deaeedc17656481/New%20folder%20(4)/Screenshot%202025-08-29%20122720.png)
 
 
-## Generated a table to provide a clear visualization of the attack, showing details such as the affected user account, event codes, timestamps, and other relevant indicators captured in Splunk:
+### Generated a table to provide a clear visualization of the attack, showing details such as the affected user account, event codes, timestamps, and other relevant indicators captured in Splunk:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Mittattack.png)
 
@@ -274,7 +274,7 @@ This was a crucial part of the lab because:
 - This allows correlation: failed logons on endpoints + suspicious traffic = higher fidelity alerts.
 
 # FortiGate config
-## 🔹 Setup Steps
+## 🔹 Setup Steps:
 ### Change Splunk Server IP, Originally Splunk was on 192.168.10.60. To match FortiGate’s network, I changed it to 192.168.100.60.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Fortigate%20pinging%20splunk.png)
@@ -295,18 +295,18 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
 
-## “After downloading the FortiGate add-on, I configured the syslog server and ensured that syslog forwarding was enabled.”
-config log syslogd setting
-set status enable
-set server 192.168.100.60
-set mode udp
-set port 514
-set facility local7
-set source-ip 192.168.100.160
-end
+## Following the installation of the FortiGate add-on, I set up the syslog server, configured it for log collection, and verified that syslog forwarding from FortiGate to the server was enabled to ensure proper logging and monitoring.
+*config log syslogd setting*
+*set status enable*
+*set server 192.168.100.60*
+*set mode udp*
+*set port 514*
+*set facility local7*
+*set source-ip 192.168.100.160*
+*end*
 **(Screenshot Missing)**
 
-## Also did the configuration in the fortigate web interface 
+## In addition to CLI-based setup, the configuration was carried out via the FortiGate web interface, ensuring that both management methods reflect the applied settings
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/8100ef16e67c1acd4af128d0b34e078f2c6f26ef/New%20folder%20(4)/configuring%20syslog%20on%20fortigate.png)
 
@@ -316,21 +316,21 @@ end
 
 ## Enable logging for different events For example, enable logging for traffic, security, and VPN events:
 
-config log setting
-set fwpolicy-implicit-log enable
-set local-in-allow enable
-end
+*config log setting*
+*set fwpolicy-implicit-log enable*
+*set local-in-allow enable*
+*end*
 
 ## Enable traffic logging for the policy so web filter events are generated and forwarded to Splunk.
 
-config firewall policy
-edit 2
-set logtraffic all
-next
-edit 1
-set logtraffic all
-next
-end
+*config firewall policy*
+*edit 2*
+*set logtraffic all*
+*next*
+*edit 1*
+*set logtraffic all*
+*next*
+*end*
 
 ## Notes:
 - set logtraffic all logs all traffic matched by this policy, including web filter blocks.
