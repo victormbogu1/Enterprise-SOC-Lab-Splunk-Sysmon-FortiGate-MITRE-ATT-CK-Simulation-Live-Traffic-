@@ -92,23 +92,23 @@ Splunk acts as the **SIEM**, centralizing logs, allowing us to:
 Install:
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Installing%20Splung.png)
 
-## Confirm that the Splunk server is actively listening on port 9997 to receive data from forwarders.
+### Confirm that the Splunk server is actively listening on port 9997 to receive data from forwarders.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20listening%20port.png)
 
-## Successfully accessed the Splunk Web interface from the browser.
+### Successfully accessed the Splunk Web interface from the browser.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/web%20interface.png)
 
 ## Disk issues & expansion (Linux LVM)
 - I ran into error because of disk space and i'd to fix it.
 ### Check current VG/LV
-- sudo lvdisplay
+*sudo lvdisplay*
 ### Extend logical volume using free space
-- sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+*sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv*
 ### Resize filesystem (ext4 example)
-- sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
-- df -h
+*sudo resize2fs /dev/ubuntu-vg/ubuntu-lv*
+*df -h*
 **(Screenshot Missing)**
 
 ## 📥 Splunk Universal Forwarder (Windows + Sysmon)
@@ -121,15 +121,15 @@ The **Universal Forwarder** is a lightweight Splunk agent. It:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Config%20File.png)
 
-## Checked and confirmed that the Splunk Universal Forwarder service is active and running correctly on the target system as well as the domain PC, ensuring data can be forwarded to the Splunk server.
+### Checked and confirmed that the Splunk Universal Forwarder service is active and running correctly on the target system as well as the domain PC, ensuring data can be forwarded to the Splunk server.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Confirm%20splunk%20is%20running.png)
 
-## Confirmed that the Splunk server is successfully receiving and indexing data forwarded from the client, indicating proper communication between the forwarder and server
+### Confirmed that the Splunk server is successfully receiving and indexing data forwarded from the client, indicating proper communication between the forwarder and server
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/39db47e2a10198db6f5f4e40744147f6a090cf03/New%20folder%20(3)/ConfirmingClient.png)
 
-## Verify that both host machines (Domain Controller and Target Machine) are visible and reachable from the Splunk server.
+### Verify that both host machines (Domain Controller and Target Machine) are visible and reachable from the Splunk server.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/095872da4a5fd5b88b16886796e37d01c40f4b5b/New%20folder%20(3)/Two_Host.png)
 
@@ -158,19 +158,19 @@ Hydra is a fast password-cracking tool. In this lab:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Hydra%20to%20attack.png)
 
-## Perform failed and successful logon attempts on the monitored hosts to verify which events are generated, allowing you to analyze how Splunk captures, identifies, and logs these security-relevant activities.
+### Perform failed and successful logon attempts on the monitored hosts to verify which events are generated, allowing you to analyze how Splunk captures, identifies, and logs these security-relevant activities.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Count%20by%20Event_Host.png)
 
-## Splunk detected event code 4625 from the attacker machine, corresponding to failed login attempts originating from IP 192.168.10.50. The events are logged over time, reflecting multiple unsuccessful login attempts as part of the attack simulation.
+### Splunk detected event code 4625 from the attacker machine, corresponding to failed login attempts originating from IP 192.168.10.50. The events are logged over time, reflecting multiple unsuccessful login attempts as part of the attack simulation.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Attacker%20failed%204625.png)
 
-## Splunk captured event code 4624 from the attacker machine, signifying a successful logon to the Target Machine. This confirms that the attack simulation achieved a successful login, as reflected in the event logs.
+### Splunk captured event code 4624 from the attacker machine, signifying a successful logon to the Target Machine. This confirms that the attack simulation achieved a successful login, as reflected in the event logs.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/Successful%20logon%20by%20the%20attacker.png)
 
-## A table was generated in Splunk highlighting the high-rate brute force attacks from the Kali attacker machine (IP: 192.168.100.50), providing a clear view of the frequency and volume of login attempts recorded during the simulation.
+### A table was generated in Splunk highlighting the high-rate brute force attacks from the Kali attacker machine (IP: 192.168.100.50), providing a clear view of the frequency and volume of login attempts recorded during the simulation.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/261569f373dec8813673ea83d429ca1bd678b3ab/New%20folder%20(3)/show%20persistent%20log.png)
 
@@ -194,31 +194,31 @@ This was a crucial part of the lab because:
    ```powershell
    Set-ExecutionPolicy Bypass -Scope CurrentUser
 
-## Created a folder named ‘Atomic’ in the C: drive
+### Created a folder named ‘Atomic’ in the C: drive
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/AtomicRed%20local%20folder.png)
 
-## Configured Windows Defender to exclude the folder C:\AtomicRedTeam from real-time scanning.
+### Configured Windows Defender to exclude the folder C:\AtomicRedTeam from real-time scanning.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/5ee5fdbebae56a714ad29efd5deaeedc17656481/New%20folder%20(4)/Screenshot%202025-08-29%20093808.png)
 
-## Configured the environment to simulate attacks using Atomic Red Team, forward logs to Splunk, and analyze them similarly to SOC operations. Enabled PowerShell script execution and ran the GitHub script to clone the Atomic Red Team repository directly into the C:\Atomic folder.
+### Configured the environment to simulate attacks using Atomic Red Team, forward logs to Splunk, and analyze them similarly to SOC operations. Enabled PowerShell script execution and ran the GitHub script to clone the Atomic Red Team repository directly into the C:\Atomic folder.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Git%20Clone.png)
 
-## All tests available in Atomic Red Team are now accessible, with each test named according to the corresponding MITRE ATT&CK technique. For example, the T1136.001 test corresponds to the ‘Create Account: Local Account’ persistence technique. The test was executed as Administrator on the Target_PC. Splunk Forwarder automatically captures these events and forwards them to the Splunk server. The following Windows Security events are generated:
+### All tests available in Atomic Red Team are now accessible, with each test named according to the corresponding MITRE ATT&CK technique. For example, the T1136.001 test corresponds to the ‘Create Account: Local Account’ persistence technique. The test was executed as Administrator on the Target_PC. Splunk Forwarder automatically captures these events and forwards them to the Splunk server. The following Windows Security events are generated:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/Atomicred.png)
 
-## “Created two new local user accounts: Newlocaluser and Crowr~
+### “Created two new local user accounts: Newlocaluser and Crowr~
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/New%20local%20user%20created.png)
 
-## Deleted the local user Newlocaluser on the Target_PC to simulate and test the T1136.001 MITRE ATT&CK technique, which involves creating a local account for persistence. Splunk Forwarder is expected to capture the corresponding events:
+### Deleted the local user Newlocaluser on the Target_PC to simulate and test the T1136.001 MITRE ATT&CK technique, which involves creating a local account for persistence. Splunk Forwarder is expected to capture the corresponding events:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/remove%20local%20user.png)
 
-## Splunk captured and displayed the creation of the Newlocaluser account on the client machine:
+### Splunk captured and displayed the creation of the Newlocaluser account on the client machine:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Newlocaluser%20MATT.png)
 
@@ -226,7 +226,7 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(3)/Coweruser.png)
 
-## During the Atomic Red Team simulations, various Windows Security event codes were generated, reflecting different activities such as account creation, logon attempts, and other actions. These events are captured and indexed by Splunk for analysis.
+### During the Atomic Red Team simulations, various Windows Security event codes were generated, reflecting different activities such as account creation, logon attempts, and other actions. These events are captured and indexed by Splunk for analysis.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/MATT%20logon.png)
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/1b97def7e0f6bdd1aad7d86d56951dd3599491df/New%20folder%20(4)/Matt%20user.png)
@@ -279,23 +279,23 @@ This was a crucial part of the lab because:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Fortigate%20pinging%20splunk.png)
 
-## Install Fortinet Add-On for Splunk
+### Install Fortinet Add-On for Splunk
 
 - Download TA-fortinet_fortigate.
 - Extract to /opt/splunk/etc/apps/.
 - Restart Splunk.
   
-## Install via CLI - Fortinet FortiGate Add-on for Splunk and Extract it:
+### Install via CLI - Fortinet FortiGate Add-on for Splunk and Extract it:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Extract%20fortigate.png)
 
 - Couldn't find it in my app directory so I'd to cd /opt/splunk/etc/apps/ and copy extracted Fortinet Add-On folder into this directory - sudo cp -r ~/Downloads/TA-fortinet_fortigate /opt/splunk/etc/apps/
 
-## Restart Splunk:
+### Restart Splunk:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/4030babe196167315aedc4024fecbbead56c4ca0/New%20folder%20(3)/Copy%20to%20splunk%20app.png)
 
-## Following the installation of the FortiGate add-on, I set up the syslog server, configured it for log collection, and verified that syslog forwarding from FortiGate to the server was enabled to ensure proper logging and monitoring.
+### Following the installation of the FortiGate add-on, I set up the syslog server, configured it for log collection, and verified that syslog forwarding from FortiGate to the server was enabled to ensure proper logging and monitoring.
 *config log syslogd setting*
 
 *set status enable*
@@ -314,15 +314,15 @@ This was a crucial part of the lab because:
 
 **(Screenshot Missing)**
 
-## In addition to CLI-based setup, the configuration was carried out via the FortiGate web interface, ensuring that both management methods reflect the applied settings
+### In addition to CLI-based setup, the configuration was carried out via the FortiGate web interface, ensuring that both management methods reflect the applied settings
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/8100ef16e67c1acd4af128d0b34e078f2c6f26ef/New%20folder%20(4)/configuring%20syslog%20on%20fortigate.png)
 
-## Verified that the FortiGate add-on is properly installed and appearing in Splunk, ensuring that logs from the FortiGate device are being collected and processed correctly:
+### Verified that the FortiGate add-on is properly installed and appearing in Splunk, ensuring that logs from the FortiGate device are being collected and processed correctly:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/e88c710edcb2a30cd86d7a37a3821bff3a40df40/New%20folder%20(3)/Confirm%20Fortigate%20add%20on%20isinstalled.png)
 
-## Enable logging for different events For example, enable logging for traffic, security, and VPN events:
+### Enable logging for different events For example, enable logging for traffic, security, and VPN events:
 
 *config log setting*
 
@@ -332,7 +332,7 @@ This was a crucial part of the lab because:
 
 *end*
 
-## Enable traffic logging for the policy so web filter events are generated and forwarded to Splunk.
+### Enable traffic logging for the policy so web filter events are generated and forwarded to Splunk.
 
 *config firewall policy*
 
@@ -353,11 +353,11 @@ This was a crucial part of the lab because:
 ## Notes:
 - set logtraffic all logs all traffic matched by this policy, including web filter blocks.
 
-## With syslog logging configured on the FortiGate, log messages will be forwarded to Splunk for monitoring and analysis, provided that UDP port 514 is open and reachable between the FortiGate and the Splunk server.
+### With syslog logging configured on the FortiGate, log messages will be forwarded to Splunk for monitoring and analysis, provided that UDP port 514 is open and reachable between the FortiGate and the Splunk server.
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Screenshot%202025-09-03%20203209.png)
 
-## Next, I configured Splunk to ingest FortiGate logs via UDP port 514. This involved creating or editing the inputs.conf file within the Fortinet Add-On, followed by restarting Splunk to apply the changes:
+### Next, I configured Splunk to ingest FortiGate logs via UDP port 514. This involved creating or editing the inputs.conf file within the Fortinet Add-On, followed by restarting Splunk to apply the changes:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/335ad021691b935952bb8ee38538d7430d619cb6/New%20folder%20(3)/inputsconf%20for%20fortigate.png)
 
@@ -368,29 +368,29 @@ This was a crucial part of the lab because:
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/56e7298a5a59c4df0ef22288e6d6bf3b9b541cb5/New%20folder%20(3)/show%20is%20enable.png)
 
 
-## After configuring log ingestion, Splunk successfully displays all FortiGate logs, with Web Filtering events included, allowing for complete monitoring and analysis of network activity:
+### After configuring log ingestion, Splunk successfully displays all FortiGate logs, with Web Filtering events included, allowing for complete monitoring and analysis of network activity:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/8100ef16e67c1acd4af128d0b34e078f2c6f26ef/New%20folder%20(4)/log%20types%20(traffic%2C%20VPN%2C%20virus%2C%20etc.)..png)
 
-## Verified that the FortiGate device is successfully integrated and its logs are being collected in Splunk, confirming proper connectivity and log ingestion:
+### Verified that the FortiGate device is successfully integrated and its logs are being collected in Splunk, confirming proper connectivity and log ingestion:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(3)/firewal.png)
 
-## Splunk successfully displays the Test Machine’s IP address along with the FortiGate logs, confirming that log events are correctly associated with the source devices for monitoring and analysis:
+### Splunk successfully displays the Test Machine’s IP address along with the FortiGate logs, confirming that log events are correctly associated with the source devices for monitoring and analysis:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Logs%20from%20web.png)
 
-## To confirm log forwarding, a test event was generated on the FortiGate device. Splunk was then checked to ensure the event was successfully received and indexed, verifying proper log ingestion from FortiGate:
+### To confirm log forwarding, a test event was generated on the FortiGate device. Splunk was then checked to ensure the event was successfully received and indexed, verifying proper log ingestion from FortiGate:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/56e7298a5a59c4df0ef22288e6d6bf3b9b541cb5/New%20folder%20(3)/firewall%20sending%20log.png)
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/a17912a36a48903868eff50066db41e724c56239/New%20folder%20(4)/Screenshot%202025-09-03%20223140.png)
 
-## The FortiGate Web Filtering feature is operational, successfully blocking access to unauthorized or unwanted web applications, as confirmed by the logs displayed in Splunk:
+### The FortiGate Web Filtering feature is operational, successfully blocking access to unauthorized or unwanted web applications, as confirmed by the logs displayed in Splunk:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/main/New%20folder%20(4)/Screenshot%202025-09-06%20212541.png)
 
-## A table was generated in Splunk to visualize the effectiveness of FortiGate Web Filtering. It shows logs of blocked web applications, including Instagram, Facebook, and Twitter, with Instagram having the highest number of blocks. This demonstrates how Web Filtering enforces access control and is effectively captured in Splunk for monitoring:
+### A table was generated in Splunk to visualize the effectiveness of FortiGate Web Filtering. It shows logs of blocked web applications, including Instagram, Facebook, and Twitter, with Instagram having the highest number of blocks. This demonstrates how Web Filtering enforces access control and is effectively captured in Splunk for monitoring:
 
 ![Nat_Created](https://github.com/victormbogu1/Windows-Brute-Force-Detection-Monitoring-with-Splunk-Sysmon-and-FortiGate/blob/b618a777451cf1cece36440e3dcae5d2b8d061e5/New%20folder%20(3)/webfirewalchart.png)
 
